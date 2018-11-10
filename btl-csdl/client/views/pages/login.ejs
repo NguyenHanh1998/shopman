@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+      </head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <div class="thumbnail" style="margin-top: 150px">
+          <div class="caption">
+            <h3 style="margin-bottom: 30px; text-align: center;">Admin</h3>
+            <div class="input-group input-group-lg" style="margin-bottom: 20px; padding: 0 15px;">
+              <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+              <input name="username" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-lg" style="margin-bottom: 30px; padding: 0 15px;">
+              <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+              <input name="password" type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+            </div>
+            <div style="margin-bottom: 20px; text-align: center;"><button id="btn-login" class="btn btn-primary btn-lg"
+                type="submit">Login</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+  </div>
+
+</body>
+
+<script>
+$('#btn-login').click(function () {
+  let username = $('input[name=username]').val()
+  let password = $('input[name=password]').val()
+  window.location.href = '/main'
+})
+
+</script>
+
+</html>

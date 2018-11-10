@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <h3 class>Products</h3>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <div class="col-md-10">
+                            <div class="row" id="lp-search">
+                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" name="lp-input-search" placeholder="Search title of product">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary" name="lp-button-search">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table id="list-products" class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <th width="7%" scope="col">ID</th>
+                <th width="45%" scope="col">Title</th>
+                <th width="10%" scope="col">Price</th>
+                <th width="10%" scope="col">Compared</th>
+                <th width="10%" scope="col">Discount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="vertical-align:middle">
+                    <img class="img-responsive img-thumbnail mx-auto d-block center-block" width="50px" />
+                </td>
+                <td style="vertical-align:middle">
+                </td>
+                <td style="vertical-align:middle">
+                </td>
+                <td style="vertical-align:middle">
+                </td>
+                <td style="vertical-align:middle">
+                </td>
+                <td style="vertical-align:middle">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="text-center" style="margin-bottom: 20px;">
+        <div id="lp-div-change-page" class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+            <button id="lp-button-previous-offset" type="button" class="btn btn-default disabled">◀</button>
+            <button id="lp-button-previous-offset" type="button" class="btn btn-default">◀</button>
+            <button id="lp-button-next-offset" type="button" class="btn btn-default">▶</button>
+            <button id="lp-button-next-offset" type="button" class="btn btn-default disabled">▶</button>
+        </div>
+    </div>
+</div>

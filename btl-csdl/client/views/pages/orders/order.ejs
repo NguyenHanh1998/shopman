@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/app-1f6ebaaa8e.css' />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+
+<body class="perfect-scrollbar-off off-canvas-sidebar">
+    <div class="wrapper">
+        <% include ../../components/sidebar %>
+        <div class="main-panel">
+            <% include ../../components/header %>
+
+            <% var bodyContent = '../../components/orders/order/body' %>
+            <% include ../../components/body %>
+        </div>
+    </div>
+</body>
+
+</html>

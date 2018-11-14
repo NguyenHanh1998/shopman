@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5"></div>
+      <div class="col-md-7 row" id="lo-search">
+        <div class="col-md-8">
+          <input name="lo-input-search" placeholder="Search order id" class="form-control">
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-primary" name="lo-button-search">Search</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- table -->
+    <div class="thumbnail mt-3">
+      <div>
+        <table id="tb-list-orders" class="table table-condensed table-hover">
+          <thead>
+            <tr>
+              <th width="30%" scope="col"><strong>Receipt ID</strong></th>
+              <th width="40%" scope="col"><strong>Paid Time</strong></th>
+              <th width="30%" scope="col"><strong>Total Paid</strong></th>
+            </tr>
+          </thead>
+          <tbody>
+              <td style="vertical-align:middle"><a href="/orders/723527">723527</a></td>
+              <td style="vertical-align:middle"></td>
+              <td style="vertical-align:middle " class="td-number"><strong>&dollar;9.69</strong></td>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+
+    <div class="text-center" style="margin-bottom: 20px;">
+        <div id="lp-div-change-page" class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+            <button id="lp-button-previous-offset" type="button" class="btn btn-default disabled">◀</button>
+            <button id="lp-button-next-offset" type="button" class="btn btn-default">▶</button>
+        </div>
+    </div>
+  </div>

@@ -24,32 +24,36 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/users', usersRouter);
 
 //DataContext
-const mysql_data_context = require('./server/repositories/mysql-context')
+const mysql_data_context = require('./server/repositories/mysql-context')(config.mysql)
 
 //Repositories
 const AdminRespository = require('./server/repositories/admin-repositories')
 
-// const admin_respository = new AdminRespository(mysql_data_context)
-//Routes
-require('./server/routes/home')(app)
-require('./server/routes/authen-route')(app)
-require('./server/routes/products-route')(app)
-require('./server/routes/order-route')(app)
-require('./server/routes/main-route')(app)
-
-
-//Controller
-const AuthenController = require('./server/controller/authen-controller')
-const ProductController = require('./server/controller/product-controller')
-const OrderController = require('./server/controller/order-controller')
-
+const admin_respository = new AdminRespository(mysql_data_context)
 
 //Service
 const AuthenService = require('./server/service/authen-service')
 const ProductService = require('./server/service/product-service')
 const OrderService = require('./server/service/order-service')
 
-// const authen_service = new AuthenService(admin_respository)
+const authen_service = new AuthenService(admin_respository)
+
+//Controller
+const AuthenController = require('./server/controller/authen-controller')
+const ProductController = require('./server/controller/product-controller')
+const OrderController = require('./server/controller/order-controller')
+
+const authen_controller = new AuthenController(authen_service)
+
+
+//Routes
+require('./server/routes/home')(app)
+require('./server/routes/authen-route')(app, authen_controller)
+require('./server/routes/products-route')(app)
+require('./server/routes/order-route')(app)
+require('./server/routes/main-route')(app)
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

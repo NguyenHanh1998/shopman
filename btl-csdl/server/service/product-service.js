@@ -26,10 +26,10 @@ class ProductService {
 
   search(condition, offset, )
 
-  search(condition, select, offset, limit, callback) {
-    let query_name = condition.q_title
-    Object.assign(condition, { name: {condition.q_title}})
-  }
+  // search(condition, select, offset, limit, callback) {
+  //   let query_name = condition.q_title
+  //   Object.assign(condition, { name: {.q_title}})
+  // }
 
 }
 module.exports = ProductService

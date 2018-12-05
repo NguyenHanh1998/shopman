@@ -1,8 +1,22 @@
-module.exports = (app) => {
-    app.get('/products', 
+module.exports = (app, product_controller) => {
+  app.get('/products',
+    product_controller.retrieve_all,
+    product_controller.check_if_has_more,
     (req, res, next) => {
-        return res.render('product/list-products', {
-            title: 'Products | Admin'
-        })
+      let { has_more, products } = res
+      return res.render('product/list-products', {
+        title: 'Products | Admin',
+        products: products,
+        has_more: has_more,
+        current_offset: res.offset
+      })
+    })
+
+  app.get('/products/search',
+    product_controller.search,
+    (req, res, next) => {
+      return res.render('product/list-products', {
+        title: 'Products | Admin'
+      })
     })
 }

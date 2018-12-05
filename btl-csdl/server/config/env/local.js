@@ -6,6 +6,7 @@ module.exports = {
         database: 'btl',
         host:'127.0.0.1',
         dialect: 'mysql',
+        operatorsAliases: false,
         dialectOptions: {charset: 'utf8mb4', decimalNumbers: true},
         define: { charset: 'utf8mb4', collate: 'utf8mb4_general_ci'},
         pool: {

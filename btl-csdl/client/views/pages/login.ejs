@@ -41,9 +41,7 @@
   $('#btn-login').click(function () {
     let username = $('input[name=username]').val()
     let password = $('input[name=password]').val()
-    debugger
     $.post('/login', { username, password }, res => {
-      debugger
       let { admin } = res
       if (admin) {
         window.location.href = '/main'

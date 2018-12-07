@@ -15,8 +15,12 @@ module.exports = (app, product_controller) => {
   app.get('/products/search',
     product_controller.search,
     (req, res, next) => {
+      let { has_more, products } = res
       return res.render('product/list-products', {
-        title: 'Products | Admin'
+        title: 'Products | Admin',
+        products: products,
+        has_more: has_more,
+        current_offset: res.offset
       })
     })
 }

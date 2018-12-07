@@ -102,8 +102,8 @@
   })
 
   $('button[name=lp-button-search]').click(function () {
-    let q_title = $('input[name=lp-input-search]').val()
-    let condition = Object.assign({}, { q_title })
+    let name = $('input[name=lp-input-search]').val()
+    let condition = Object.assign({}, { name })
     let query = []
     Object.keys(condition).map(key => {
       if (condition[key] != '') {

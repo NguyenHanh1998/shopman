@@ -24,12 +24,14 @@ class ProductService {
     })
   }
 
-  search(condition, offset, )
-
-  // search(condition, select, offset, limit, callback) {
-  //   let query_name = condition.q_title
-  //   Object.assign(condition, { name: {.q_title}})
-  // }
+  search(condition, select, offset, limit, callback) {
+    // let query_name = condition.q_title
+    // Object.assign(condition, { name: query_name })
+    this.product_repository.find_all(condition, select, offset, limit, (err, products) => {
+      if (err) return callback(err)
+      return callback(null, products)
+    })
+  }
 
 }
 module.exports = ProductService

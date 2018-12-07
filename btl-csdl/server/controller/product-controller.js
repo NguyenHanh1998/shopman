@@ -34,13 +34,15 @@ class ProductController {
   }
 
   search(req, res, next) {
-    let { offset = 0, limit = 20, q_title =''} = req.query
-    let condition = Object.assign({}, { q_title})
+    let { offset = 0, limit = 20, name = '' } = req.query
+    let condition = Object.assign({}, { name })
     let select = ['product_id', 'name', 'category', 'price_per_unit', 'instock']
     this.product_service.search(condition, select, offset, limit, (err, products) => {
-      if(err) return next(err)
+      if (err) return next(err)
       else {
-        
+        res.products = products
+        res.offset = offset
+        return next()
       }
     })
   }

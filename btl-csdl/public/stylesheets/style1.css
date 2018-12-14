@@ -1,0 +1,24 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    font-family: sans-serif;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    
+}
+.login{
+    width: 320px;
+    height: 420px;
+    background: rgb(78, 9, 6);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    margin-top: 150px;
+    padding: 70px 30px;
+    border-radius: 10%;
+}

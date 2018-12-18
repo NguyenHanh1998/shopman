@@ -64,7 +64,7 @@
   $('#lp-button-next-offset').click(function () {
     let has_more = $('#lp-div-change-page').attr('has-more')
     if (has_more == 'false') {
-      alert('No more orders')
+      alert('No more order')
     }
     else {
       let current_offset = Number($('#lp-div-change-page').attr('current-offset'))
@@ -76,7 +76,7 @@
   $('#lp-button-previous-offset').click(function () {
     let current_offset = Number($('#lp-div-change-page').attr('current-offset'))
     if (current_offset == 0) {
-      alert('No more orders')
+      alert('No more order')
     }
     else {
       let url = `/orders${current_offset - 1 == 0 ? '' : `?offset=${current_offset - 1}`}`

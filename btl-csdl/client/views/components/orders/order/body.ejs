@@ -68,7 +68,7 @@
 
             <tbody>
               <% items.forEach(item => {%>
-              <tr name="order-brief-content" data-order-id="<%= item.product_id%>" style="cursor:pointer">
+              <tr name="product-brief-content" data-product-id="<%= item.product_id%>" style="cursor:pointer">
                 <td style="text-align:center">
                   <a>
                     <%= item.product_id%>
@@ -83,21 +83,18 @@
                   <%= item.price%>
                 </td>
               </tr>
-
-              <% items.forEach(({category, price_per_unit, name, product_id}) => { %>
-              <tr name="collapsed-content-order-<%= product_id%>" style="cursor:pointer" class="active" hidden>
+              <tr name="collapsed-content-product-<%= item.product_id%>" style="cursor:pointer" class="active" hidden>
                 <td style="vertical-align:middle;text-align:left;line-height:1.5;" colspan="2">
                   <strong>
-                    <%= name %></strong><br>
+                    <%= item.name %></strong><br>
                   <strong>Price: </strong>
-                  <%= price_per_unit%><br>
+                  <%= item.price_per_unit%><br>
                   <strong>Category: </strong>
-                  <%= category%><br>
+                  <%= item.category%><br>
                 </td>
                 <td style="vertical-align:middle;text-align:right;" colspan="2">
                   <button class="btn btn-primary" name="od-btn-detail-product">More Detail</button></td>
               </tr>
-              <% }) %>
               <% }) %>
             </tbody>
           </table>
@@ -109,7 +106,7 @@
 </div>
 
 <script>
-  $('tr[name=order-brief-content]').click(function () {
-    $(`tr[name=collapsed-content-order-${$(this).data('order-id')}]`).toggle()
+  $('tr[name=product-brief-content]').click(function (e) {
+    $(`tr[name=collapsed-content-product-${$(this).data('product-id')}]`).toggle()
   })
 </script>

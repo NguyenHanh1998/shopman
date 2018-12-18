@@ -80,7 +80,8 @@
                   <%= item.quantity_sold%>
                 </td>
                 <td style="text-align:center">
-                  <%= item.price%>
+                  <strong>&dollar;
+                    <%= item.price%></strong>
                 </td>
               </tr>
               <tr name="collapsed-content-product-<%= item.product_id%>" style="cursor:pointer" class="active" hidden>
@@ -88,6 +89,7 @@
                   <strong>
                     <%= item.name %></strong><br>
                   <strong>Price: </strong>
+                  &dollar;
                   <%= item.price_per_unit%><br>
                   <strong>Category: </strong>
                   <%= item.category%><br>

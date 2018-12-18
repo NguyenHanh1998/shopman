@@ -64,11 +64,11 @@
   $('#lp-button-next-offset').click(function () {
     let has_more = $('#lp-div-change-page').attr('has-more')
     if (has_more == 'false') {
-      alert('No more products')
+      alert('No more orders')
     }
     else {
       let current_offset = Number($('#lp-div-change-page').attr('current-offset'))
-      let url = `/products?offset=${current_offset + 1}`
+      let url = `/orders?offset=${current_offset + 1}`
       window.location.href = url
     }
   })
@@ -76,10 +76,10 @@
   $('#lp-button-previous-offset').click(function () {
     let current_offset = Number($('#lp-div-change-page').attr('current-offset'))
     if (current_offset == 0) {
-      alert('No more products')
+      alert('No more orders')
     }
     else {
-      let url = `/products${current_offset - 1 == 0 ? '' : `?offset=${current_offset - 1}`}`
+      let url = `/orders${current_offset - 1 == 0 ? '' : `?offset=${current_offset - 1}`}`
       window.location.href = url
     }
   })

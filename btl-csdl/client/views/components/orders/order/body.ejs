@@ -1,0 +1,115 @@
+<div class="container-fluid mb-5">
+  <div class="table text-right margin-bottom:10px;">
+    <a>
+      <button class="btn btn-primary btn-fill">Create Order</button>
+    </a>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <label>
+        <font size="3">Customer Infor</font>
+      </label>
+      <div class="thumbnail mb4">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="caption">
+              <label>Customer ID: </label>
+              <span id="od-span-customer-id">
+                <%= customer.customer_id%>
+              </span>
+            </div>
+
+            <div class="caption">
+              <label>Email: </label>
+              <span id="od-span-customer-id">
+                <%= customer.email%>
+              </span>
+            </div>
+
+            <div class="caption">
+              <label>Name: </label>
+              <span id="od-span-customer-id">
+                <%= customer.customer_name%>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="thumbnail">
+      <div class="caption">
+        <label class="mb4">
+          <font size="3">Detail Products</font>
+        </label>
+        <div class="table-responsive">
+          <table id="table-product-receipt" class="table" style="width:100%">
+
+            <thead>
+              <tr class="bg-primary">
+                <th width="20%" scope="rol" style="text-align:center"><strong>
+                    <font color="#fff">Product ID</font>
+                  </strong></th>
+                <th width="40%" scope="rol" style="text-align:center"><strong>
+                    <font color="#fff">Title</font>
+                  </strong></th>
+                <th width="20%" scope="rol" style="text-align:center"><strong>
+                    <font color="#fff">Quantity</font>
+                  </strong></th>
+                <th width="20%" scope="rol" style="text-align:center"><strong>
+                    <font color="#fff">Sub Total</font>
+                  </strong></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% items.forEach(item => {%>
+              <tr name="order-brief-content" data-order-id="<%= item.product_id%>" style="cursor:pointer">
+                <td style="text-align:center">
+                  <a>
+                    <%= item.product_id%>
+                  </a></td>
+                <td style="text-align:center">
+                  <%= item.name%>
+                </td>
+                <td style="text-align:center">
+                  <%= item.quantity_sold%>
+                </td>
+                <td style="text-align:center">
+                  <%= item.price%>
+                </td>
+              </tr>
+
+              <% items.forEach(({category, price_per_unit, name, product_id}) => { %>
+              <tr name="collapsed-content-order-<%= product_id%>" style="cursor:pointer" class="active" hidden>
+                <td style="vertical-align:middle;text-align:left;line-height:1.5;" colspan="2">
+                  <strong>
+                    <%= name %></strong><br>
+                  <strong>Price: </strong>
+                  <%= price_per_unit%><br>
+                  <strong>Category: </strong>
+                  <%= category%><br>
+                </td>
+                <td style="vertical-align:middle;text-align:right;" colspan="2">
+                  <button class="btn btn-primary" name="od-btn-detail-product">More Detail</button></td>
+              </tr>
+              <% }) %>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $('tr[name=order-brief-content]').click(function () {
+    $(`tr[name=collapsed-content-order-${$(this).data('order-id')}]`).toggle()
+  })
+</script>

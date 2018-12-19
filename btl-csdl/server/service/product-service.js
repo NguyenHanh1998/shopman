@@ -3,6 +3,7 @@ class ProductService {
     this.retrieve_all = this.retrieve_all.bind(this)
     this.product_repository = product_repository
     this.search = this.search.bind(this)
+    this.retrieve_one = this.retrieve_one.bind(this)
   }
 
   retrieve_all(condition, select, offset, limit, callback) {
@@ -21,6 +22,14 @@ class ProductService {
     this.product_repository.find_all(condition, select, offset, limit, (err, products) => {
       if (err) return callback(err)
       return callback(null, products)
+    })
+  }
+
+
+  retrieve_one(product_id, select, callback) {
+    this.product_repository.find_one(product_id, select,(err, product) => {
+      if (err) return callback(err)
+      return callback(null, product)
     })
   }
 

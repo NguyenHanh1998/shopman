@@ -27,4 +27,22 @@ module.exports = class {
         return null
       })
   }
+
+  find_one(product_id, select, callback) {
+    this.Product.findOne({
+      where: product_id,
+      attributes: select
+    }).then(res => {
+      if (!res) callback(null, [])
+      else {
+        res = res.dataValues
+        callback(null, res)
+        return null
+      }
+    }).catch(err => {
+      let error = err.message
+      callback(error)
+      return null
+    })
+  }
 }

@@ -4,6 +4,7 @@ class ProductController {
     this.retrieve_all = this.retrieve_all.bind(this)
     this.check_if_has_more = this.check_if_has_more.bind(this)
     this.search = this.search.bind(this)
+    this.retrieve_one = this.retrieve_one.bind(this)
   }
   retrieve_all(req, res, next) {
     let { offset = 0, limit = 20 } = req.query
@@ -42,6 +43,21 @@ class ProductController {
       else {
         res.products = products
         res.offset = offset
+        return next()
+      }
+    })
+  }
+
+
+  retrieve_one(req, res, next) {
+    console.log(req)
+    let product_id = req.params
+    // let condition = Object.assign({}, { product_id })
+    let select = ['product_id', 'name', 'category', 'price_per_unit', 'instock']
+    this.product_service.retrieve_one(product_id, select, (err, product) => {
+      if (err) next(err)
+      else {
+        res.product = product
         return next()
       }
     })

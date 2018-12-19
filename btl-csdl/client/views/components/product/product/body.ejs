@@ -1,0 +1,106 @@
+<div class="container-fluid" style="margin-bottom:30px">
+  <div class="row">
+    <div class="col-md-8">
+      <h3 class="mb-3">
+        <strong>
+          <%= product.name%></strong></h3>
+    </div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <div class="input-group-btn">
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-fill" name="p-btn-update">Update</button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-fill btn-danger" name="p-btn-delete">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+
+      <div class="card">
+        <div class="card-content">
+
+          <div class="form-group">
+            <label>Title</label>
+            <input class="form-control" name="pd-input-title" readonly placeholder="Name of the product" value="<%= product.name%>">
+          </div>
+
+          <div class="form-group">
+            <label>Short Description</label>
+            <textarea class="form-control" style="resize: none;" placeholder="Description In Short" rows="5">Keep your little one calm</textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="pd-tool-descrip" class="mb-2" data-product-description-temp="Keep your little one calm"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <input class="form-control" name="pd-input-category" readonly placeholder="Category of the product" value="<%= product.category%>">
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-content">
+
+          <div class="form-group">
+            <label>Price</label>
+            <input class="form-control" name="pd-input-price" placeholder="N/A" readonly value="<%= product.price_per_unit%>">
+          </div>
+
+          <div class="form-group">
+            <label>Compared Price</label>
+            <input class="form-control" name="pd-input-compared-price" placeholder="N/A" readonly>
+          </div>
+
+          <div class="form-group">
+            <label>Shipping Price</label>
+            <input class="form-control" name="pd-input-shipping-price" placeholder="(e.g. 50.2)" type="number" step="0.01"
+              min="0" required pattern="/[0-9.]+/">
+          </div>
+
+          <div class="form-group">
+            <label>Shipping Day</label>
+            <input class="form-control" name="pd-input-shipping-day" placeholder="(e.g. 3-4 days)">
+          </div>
+
+          <div class="form-group">
+            <label>Instock</label>
+            <input class="form-control" name="pd-input-instock" type="number" value="<%= product.instock%>">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  $(function () {
+    $('#pd-tool-descrip').froalaEditor({
+      iframe: true,
+      heightMin: 100,
+      heightMax: 350,
+      toolbarSticky: false,
+    })
+    $('#pd-tool-descrip').froalaEditor('position.refresh')
+    $('#pd-tool-descrip').froalaEditor('html.set', $('#pd-tool-descrip').data('product-description-temp').replace(/\\"/gm, `"`))
+    $('#pd-tool-descrip').removeAttr('data-product-description-temp')
+    // $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+    //   event.preventDefault()
+    //   $(this).ekkoLightbox()
+    // });
+  });
+
+</script>

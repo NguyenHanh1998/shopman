@@ -50,7 +50,6 @@ class ProductController {
 
 
   retrieve_one(req, res, next) {
-    console.log(req)
     let product_id = req.params
     // let condition = Object.assign({}, { product_id })
     let select = ['product_id', 'name', 'category', 'price_per_unit', 'instock']

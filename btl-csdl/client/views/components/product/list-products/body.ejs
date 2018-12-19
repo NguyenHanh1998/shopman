@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3">
-      <h3 class>Products</h3>
+      <h3>Products</h3>
     </div>
     <div class="col-md-9">
       <div class="row">
@@ -42,13 +42,17 @@
                     <img class="img-responsive img-thumbnail mx-auto d-block center-block" width="50px" />
                 </td> -->
         <td style="vertical-align:middle">
-          <%= product_id %>
+          <a href="/products/<%= product_id%>">
+            <%= product_id %></a>
         </td>
         <td style="vertical-align:middle">
-          <%= name %>
+          <a href="/products/<%= product_id%>">
+            <%= name %>
+          </a>
         </td>
         <td style="vertical-align:middle">
-          &dollar;<%= price_per_unit %>
+          &dollar;
+          <%= price_per_unit %>
         </td>
         <td style="vertical-align:middle">
           <%= instock %>

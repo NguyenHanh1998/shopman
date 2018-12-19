@@ -87,7 +87,8 @@
               <tr name="collapsed-content-product-<%= item.product_id%>" style="cursor:pointer" class="active" hidden>
                 <td style="vertical-align:middle;text-align:left;line-height:1.5;" colspan="2">
                   <strong>
-                    <%= item.name %></strong><br>
+                    <a href="/products/<%= item.product_id%>">
+                      <%= item.name %></a></strong><br>
                   <strong>Price: </strong>
                   &dollar;
                   <%= item.price_per_unit%><br>

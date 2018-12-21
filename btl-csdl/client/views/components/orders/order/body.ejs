@@ -96,7 +96,8 @@
                   <%= item.category%><br>
                 </td>
                 <td style="vertical-align:middle;text-align:right;" colspan="2">
-                  <button class="btn btn-primary" name="od-btn-detail-product">More Detail</button></td>
+                  <button class="btn btn-primary" data-product-id="<%= item.product_id%>" name="od-btn-detail-product">More
+                    Detail</button></td>
               </tr>
               <% }) %>
             </tbody>
@@ -111,5 +112,11 @@
 <script>
   $('tr[name=product-brief-content]').click(function (e) {
     $(`tr[name=collapsed-content-product-${$(this).data('product-id')}]`).toggle()
+  })
+
+  $('button[name=od-btn-detail-product]').click(function () {
+    let product_id = $(this).data('product-id')
+    let url = `/order/chart?product_id=${product_id}`
+    window.location.href = url
   })
 </script>

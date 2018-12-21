@@ -33,5 +33,12 @@ class OrderService {
       return callback(null, product)
     })
   }
+
+  get_sale_date(receipt_id, select, callback) {
+    this.order_repository.find_date(receipt_id, select, (err, sale_date) => {
+      if (err) return callback(err)
+      return callback(null, sale_date)
+    })
+  }
 }
 module.exports = OrderService

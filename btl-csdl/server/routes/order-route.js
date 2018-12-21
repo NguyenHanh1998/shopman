@@ -24,4 +24,15 @@ module.exports = (app, order_controller) => {
         items: order_items
       })
     })
+
+  app.get('/order/chart',
+    order_controller.get_quantity,
+    order_controller.get_date,
+    (req, res, next) => {
+      let { order_sale } = res
+      return res.render('orders/product-chart', {
+        title: 'Order/Product-Chart',
+        order_sale: JSON.stringify(order_sale)
+      })
+    })
 }

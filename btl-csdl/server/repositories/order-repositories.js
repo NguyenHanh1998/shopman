@@ -1,4 +1,5 @@
 // const underscore = require('underscore')
+const Op = require('sequelize').Op
 
 module.exports = class {
   constructor(db_context) {
@@ -83,6 +84,30 @@ module.exports = class {
       attributes: select,
     }).then(res => {
       if (!res) callback(null, [])
+      else {
+        res = res.dataValues
+        callback(null, res)
+        return null
+      }
+    }).catch(err => {
+      let error = err.message
+      callback(error)
+      return null
+    })
+  }
+
+  find_date(receipt_id, select, callback) {
+    // condition = condition || {}
+    this.Order.findOne({
+      where: {
+        receipt_id,
+        paid_time: {
+          [Op.between]: ["2018-10-01", "2018-10-31"]
+        }
+      },
+      attributes: select,
+    }).then(res => {
+      if (!res) callback(null, null)
       else {
         res = res.dataValues
         callback(null, res)

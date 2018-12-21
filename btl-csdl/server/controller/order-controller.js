@@ -1,5 +1,5 @@
 const async = require('async')
-   
+
 class OrderController {
   constructor(order_service) {
     this.order_service = order_service
@@ -8,6 +8,8 @@ class OrderController {
     this.get_customer_info = this.get_customer_info.bind(this)
     this.get_sale_items = this.get_sale_items.bind(this)
     this.get_sale_product = this.get_sale_product.bind(this)
+    this.get_quantity = this.get_quantity.bind(this)
+    this.get_date = this.get_date.bind(this)
   }
 
   retrieve_all(req, res, next) {
@@ -73,8 +75,43 @@ class OrderController {
       let select = ['product_id', 'name', 'category', 'price_per_unit']
       this.order_service.get_sale_product(condition, select, (err, res_item) => {
         if (err) return cb(err)
-          
+
         Object.assign(item, res_item)
+        cb()
+      })
+    }, err => {
+      return next(err)
+    })
+  }
+
+  get_quantity(req, res, next) {
+    let product_id = req.query.product_id
+    let condition = Object.assign({}, { product_id })
+    let select = ['receipt_id', 'quantity_sold']
+    this.order_service.get_sale_items(condition, select, (err, order_quantity) => {
+      if (err) next(err)
+      else {
+        res.order_quantity = order_quantity
+        return next()
+      }
+    })
+  }
+
+  get_date(req, res, next) {
+    if (!res.order_quantity) return next()
+    res.order_sale = []
+    let d = new Date()
+    let c_year = d.getFullYear()
+    let c_month = d.getMonth()
+    async.eachSeries(res.order_quantity, (item, cb) => {
+      let receipt_id = item.receipt_id
+      let select = ['paid_time']
+      this.order_service.get_sale_date(receipt_id, select, (err, sale_date) => {
+        if (err) return cb(err)
+        if (sale_date != null) {
+          Object.assign(item, sale_date)
+          res.order_sale.push(item)
+        }
         cb()
       })
     }, err => {

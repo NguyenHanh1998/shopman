@@ -1,0 +1,63 @@
+<div class="container-fluid mb-5">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Total Orders in October</h4>
+        </div>
+
+        <div class="card-content">
+          <div width="100%" id="chartStock" height="600" class="ct-chart" allowfullscreen>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let array = '<%- order_sale%>'
+  let order_array = JSON.parse(array)
+
+  let sv_labels = []
+  let sv_series = []
+  order_array.forEach(element => {
+    // sv_labels.push(Date(element.paid_time).getMonth())
+    let d = new Date(element.paid_time)
+    sv_labels.push(d.getDate())
+    sv_series.push(element.quantity_sold)
+  });
+  sv_labels.sort(function (a, b) {
+    return a - b
+  })
+  console.log(sv_labels)
+  let dataStock = {
+    labels: sv_labels,
+    series: [
+      sv_series
+    ]
+  };
+
+  let optionsStock = {
+    lineSmooth: false,
+    // height: "200px",
+    axisY: {
+      offset: 30,
+      marginLeft: 120,
+      labelInterpolationFnc: function (value) {
+        return '' + value;
+      }
+
+    },
+    // // low: 10,
+    height: "350px",
+    high: 50,
+    classNames: {
+      point: 'ct-point ct-green',
+      line: 'ct-line ct-green'
+    }
+  };
+
+  let chart = new Chartist.Line('#chartStock', dataStock, optionsStock)
+</script>

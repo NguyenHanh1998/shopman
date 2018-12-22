@@ -9,7 +9,7 @@
       <div class="input-group">
         <div class="input-group-btn">
           <div class="col-md-6">
-            <button class="btn btn-primary btn-fill" name="p-btn-update">Update</button>
+            <button class="btn btn-primary btn-fill" data-product-id="<%= product.product_id%>" name="p-btn-update">Update</button>
           </div>
           <div class="col-md-6">
             <button class="btn btn-fill btn-danger" name="p-btn-delete">Delete</button>
@@ -27,7 +27,7 @@
 
           <div class="form-group">
             <label>Title</label>
-            <input class="form-control" name="pd-input-title" readonly placeholder="Name of the product" value="<%= product.name%>">
+            <input class="form-control" name="pd-input-title" placeholder="Name of the product" value="<%= product.name%>">
           </div>
 
           <div class="form-group">
@@ -42,7 +42,7 @@
 
           <div class="form-group">
             <label>Category</label>
-            <input class="form-control" name="pd-input-category" readonly placeholder="Category of the product" value="<%= product.category%>">
+            <input class="form-control" name="pd-input-category" placeholder="Category of the product" value="<%= product.category%>">
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@
 
           <div class="form-group">
             <label>Price</label>
-            <input class="form-control" name="pd-input-price" placeholder="N/A" readonly value="<%= product.price_per_unit%>">
+            <input class="form-control" name="pd-input-price" placeholder="N/A" value="<%= product.price_per_unit%>">
           </div>
 
           <div class="form-group">
@@ -86,6 +86,7 @@
 
 </div>
 
+
 <script>
   $(function () {
     $('#pd-tool-descrip').froalaEditor({
@@ -103,4 +104,32 @@
     // });
   });
 
+  $('button[name=p-btn-update]').click(function () {
+    if (confirm("Do you want to update this product?")) {
+      $('button[name=p-bnt-delete]').attr('disable')
+      $('button[name=p-btn-update]').attr('disable')
+
+      let name = $('input[name=pd-input-title]').val()
+      let category = $('input[name=pd-input-category]').val()
+      let price_per_unit = Number($('input[name=pd-input-price]').val())
+      let instock = Number($('input[name=pd-input-instock]').val())
+      let product_id = $('button[name=p-btn-update]').data('product-id')
+
+      let product_update = {}
+      Object.assign(product_update, { name, category, price_per_unit, instock })
+      $.ajax({
+        url: `/products/${product_id}`,
+        type: 'PUT',
+        data: product_update,
+        success: res => {
+          alert('Successfully updated!')
+          window.location.reload()
+        },
+        error: err => {
+          alert('Update failed, please try again!')
+          window.location.reload()
+        }
+      })
+    }
+  })
 </script>

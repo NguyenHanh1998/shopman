@@ -33,4 +33,10 @@ module.exports = (app, product_controller) => {
         current_offset: res.offset
       })
     })
+
+  app.put('/products/:product_id',
+    product_controller.update,
+    (req, res) => {
+      return res.status(200).send({ updated: res.updated })
+    })
 }

@@ -1,0 +1,24 @@
+
+
+.userbar{
+	width: 500px;
+	height: 80px;
+	float: right;
+	text-align: right;
+	/*padding-top: 5px;*/
+}
+	
+.userbar .user-id,.user-noti{
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	/*color: red;*/
+
+	margin-right: 20px;
+	position: relative;
+	top: 10%;
+
+}
+
+.sidebar{
+	margin-right: 15px;
+}

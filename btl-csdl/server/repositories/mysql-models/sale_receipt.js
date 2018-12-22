@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
       autoIncrement: true
     },
     paid: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     paid_time: {
@@ -25,6 +25,5 @@ module.exports = function (sequelize, DataTypes) {
   }, {
       underscored: true,
       timestamps: false,
-      freezeTableName: true,
     })
 }

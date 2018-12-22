@@ -1,104 +1,41 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-5"></div>
-    <div class="col-md-7 row" id="lo-search">
-      <div class="col-md-8">
-        <input name="lo-input-search" placeholder="Search order id" class="form-control">
+    <div class="row">
+      <div class="col-md-5"></div>
+      <div class="col-md-7 row" id="lo-search">
+        <div class="col-md-8">
+          <input name="lo-input-search" placeholder="Search order id" class="form-control">
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-primary" name="lo-button-search">Search</button>
+        </div>
       </div>
-      <div class="col-md-4">
-        <button class="btn btn-primary" name="lo-button-search">Search</button>
+    </div>
+  
+    <!-- table -->
+    <div class="thumbnail mt-3">
+      <div>
+        <table id="tb-list-orders" class="table table-condensed table-hover">
+          <thead>
+            <tr>
+              <th width="30%" scope="col"><strong>Receipt ID</strong></th>
+              <th width="40%" scope="col"><strong>Paid Time</strong></th>
+              <th width="30%" scope="col"><strong>Total Paid</strong></th>
+            </tr>
+          </thead>
+          <tbody>
+              <td style="vertical-align:middle"><a href="/orders/723527">723527</a></td>
+              <td style="vertical-align:middle"></td>
+              <td style="vertical-align:middle " class="td-number"><strong>&dollar;9.69</strong></td>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
+  
 
-  <!-- table -->
-  <div class="thumbnail mt-3">
-    <div>
-      <table id="tb-list-orders" class="table table-condensed table-hover">
-        <thead>
-          <tr>
-            <th width="30%" scope="col"><strong>Order ID</strong></th>
-            <th width="40%" scope="col"><strong>Date</strong></th>
-            <th width="30%" scope="col"><strong>Sub total</strong></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% orders.forEach(({receipt_id, paid, paid_time, customer_id}) => { %>
-          <tr>
-            <td style="vertical-align:middle" name="lo-td" data-receipt-id="<%= receipt_id%>" data-customer="<%= customer_id%>">
-              <a>
-                <%= receipt_id %></a>
-            </td>
-            <td style="vertical-align:middle">
-              <%= paid_time%>
-            </td>
-            <td style="vertical-align:middle " class="td-number">
-              <strong>&dollar;
-                <%=paid%></strong></td>
-          </tr>
-          <% }) %>
-        </tbody>
-      </table>
+    <div class="text-center" style="margin-bottom: 20px;">
+        <div id="lp-div-change-page" class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+            <button id="lp-button-previous-offset" type="button" class="btn btn-default disabled">◀</button>
+            <button id="lp-button-next-offset" type="button" class="btn btn-default">▶</button>
+        </div>
     </div>
   </div>
-
-
-  <div class="text-center" style="margin-bottom: 20px;">
-    <div id="lp-div-change-page" current-offset="<%=current_offset%>" has-more="<%=has_more%>" class="btn-group btn-group-lg"
-      role="group" aria-label="Basic example">
-      <%if(current_offset == 0) { %>
-      <button id="lp-button-previous-offset" type="button" class="btn btn-default disabled">◀</button>
-      <% } else { %>
-      <button id="lp-button-previous-offset" type="button" class="btn btn-default">◀</button>
-      <% } %>
-      <% if (has_more) { %>
-      <button id="lp-button-next-offset" type="button" class="btn btn-default">▶</button>
-      <% } else { %>
-      <button id="lp-button-next-offset" type="button" class="btn btn-default disabled">▶</button>
-      <% } %>
-    </div>
-  </div>
-</div>
-
-<script>
-  $('#lp-button-next-offset').click(function () {
-    let has_more = $('#lp-div-change-page').attr('has-more')
-    if (has_more == 'false') {
-      alert('No more order')
-    }
-    else {
-      let current_offset = Number($('#lp-div-change-page').attr('current-offset'))
-      let url = `/orders?offset=${current_offset + 1}`
-      window.location.href = url
-    }
-  })
-
-  $('#lp-button-previous-offset').click(function () {
-    let current_offset = Number($('#lp-div-change-page').attr('current-offset'))
-    if (current_offset == 0) {
-      alert('No more order')
-    }
-    else {
-      let url = `/orders${current_offset - 1 == 0 ? '' : `?offset=${current_offset - 1}`}`
-      window.location.href = url
-    }
-  })
-
-  $('td[name=lo-td]').click(function () {
-    let receipt_id = $(this).data('receipt-id')
-    let customer_id = $(this).data('customer')
-    console.log(customer_id)
-    let condition = Object.assign({}, { customer_id })
-    let query = []
-    Object.keys(condition).map(key => {
-      if (condition[key] != '') {
-        query.push(`${key}=${condition[key]}`)
-      }
-    })
-    query = query.join('&')
-    if (query.length == 0) query = ''
-    console.log(query)
-    let url = `/orders/${receipt_id}?${query}`
-    window.location.href = url
-  })
-</script>

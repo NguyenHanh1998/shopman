@@ -26,15 +26,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 //DataContext
 const admin_mysql_data_context = require('./server/repositories/admin-mysql-context')(config.mysql)
 const  product_mysql_data_context = require('./server/repositories/product-mysql-context')(config.mysql)
-const order_mysql_data_context = require('./server/repositories/order-mysql-context')(config.mysql)
 //Repositories
 const AdminRespository = require('./server/repositories/admin-repositories')
 const ProductRepository = require('./server/repositories/product-repository')
-const OrderRepository = require('./server/repositories/order-repositories')
 
 const admin_respository = new AdminRespository(admin_mysql_data_context)
 const product_repository = new ProductRepository(product_mysql_data_context)
-const order_repository = new OrderRepository(order_mysql_data_context)
 
 //Service
 const AuthenService = require('./server/service/authen-service')
@@ -43,7 +40,7 @@ const OrderService = require('./server/service/order-service')
 
 const authen_service = new AuthenService(admin_respository)
 const product_service = new ProductService(product_repository)
-const order_service = new OrderService(order_repository)
+
 //Controller
 const AuthenController = require('./server/controller/authen-controller')
 const ProductController = require('./server/controller/product-controller')
@@ -51,12 +48,12 @@ const OrderController = require('./server/controller/order-controller')
 
 const authen_controller = new AuthenController(authen_service)
 const product_controller = new ProductController(product_service)
-const order_controller = new OrderController(order_service)
+
 //Routes
 require('./server/routes/home')(app)
 require('./server/routes/authen-route')(app, authen_controller)
 require('./server/routes/products-route')(app, product_controller)
-require('./server/routes/order-route')(app,order_controller)
+require('./server/routes/order-route')(app)
 require('./server/routes/main-route')(app)
 
 

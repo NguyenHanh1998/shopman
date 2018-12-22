@@ -45,4 +45,17 @@ module.exports = class {
       return null
     })
   }
+
+  update(condition, product, callback) {
+    this.Product.update((product), {
+      where: condition
+    }).then(res => {
+      callback(null, res.every(val => val == 1))
+      return null
+    }).catch(err => {
+      let error = err.message
+      callback(error)
+      return null
+    })
+  }
 }

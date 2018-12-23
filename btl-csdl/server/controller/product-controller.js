@@ -6,6 +6,7 @@ class ProductController {
     this.search = this.search.bind(this)
     this.retrieve_one = this.retrieve_one.bind(this)
     this.update = this.update.bind(this)
+    this.create = this.create.bind(this)
   }
   retrieve_all(req, res, next) {
     let { offset = 0, limit = 20 } = req.query
@@ -71,6 +72,17 @@ class ProductController {
       if (err) next(err)
       else {
         res.updated = updated
+        return next()
+      }
+    })
+  }
+
+  create(req, res, next) {
+    let product = req.body
+    this.product_service.create(product, (err, product) => {
+      if (err) next(err)
+      else {
+        res.product = product
         return next()
       }
     })

@@ -58,4 +58,16 @@ module.exports = class {
       return null
     })
   }
+
+  create(product, callback) {
+    this.Product.create((product))
+      .then(res => {
+        callback(null, res)
+        return null
+      }).catch(err => {
+        let error = err.message
+        callback(error)
+        return null
+      })
+  }
 }

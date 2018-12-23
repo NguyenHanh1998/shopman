@@ -5,6 +5,7 @@ class ProductService {
     this.search = this.search.bind(this)
     this.retrieve_one = this.retrieve_one.bind(this)
     this.update = this.update.bind(this)
+    this.create = this.create.bind(this)
   }
 
   retrieve_all(condition, select, offset, limit, callback) {
@@ -50,5 +51,11 @@ class ProductService {
     })
   }
 
+  create(product, callback) {
+    this.product_repository.create(product, (err, product) => {
+      if (err) return callback(err)
+      return callback(null, product)
+    })
+  }
 }
 module.exports = ProductService

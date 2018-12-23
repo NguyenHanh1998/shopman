@@ -4,6 +4,7 @@ class OrderService {
     this.retrieve_all = this.retrieve_all.bind(this)
     this.get_customer_info = this.get_customer_info.bind(this)
     this.get_sale_items = this.get_sale_items.bind(this)
+    this.search = this.search.bind(this)
   }
 
   retrieve_all(condition, select, offset, limit, callback) {
@@ -38,6 +39,13 @@ class OrderService {
     this.order_repository.find_date(receipt_id, select, (err, sale_date) => {
       if (err) return callback(err)
       return callback(null, sale_date)
+    })
+  }
+
+  search(condition, select, offset, limit, callback) {
+    this.order_repository.find_all(condition, select, offset, limit, (err, orders) => {
+      if (err) return callback(err)
+      return callback(null, orders)
     })
   }
 }

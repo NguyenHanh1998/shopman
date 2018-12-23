@@ -101,4 +101,19 @@
     let url = `/orders/${receipt_id}?${query}`
     window.location.href = url
   })
+
+  $('button[name=lo-button-search]').click(function() {
+    let receipt_id = $('input[name=lo-input-search]').val()
+    let condition = Object.assign({}, { receipt_id })
+    let query = []
+    Object.keys(condition).map(key => {
+      if (condition[key] != '') {
+        query.push(`${key}=${condition[key]}`)
+      }
+    })
+    query = query.join('&')
+    if (query.length == 0) query = ''
+    url = `/orders${query != '' ? `/search?${query}` : ''}`
+    window.location.href = url
+  })
 </script>

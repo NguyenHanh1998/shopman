@@ -12,6 +12,18 @@ module.exports = (app, order_controller) => {
       })
     })
 
+  app.get('/orders/search',
+    order_controller.search,
+    (req, res, next) => {
+      let { has_more, orders } = res
+      return res.render('orders/list-orders', {
+        title: 'Orders~Search | Admin',
+        orders: orders,
+        has_more: has_more,
+        current_offset: res.offset
+      })
+    })
+
   app.get('/orders/:receipt_id',
     order_controller.get_customer_info,
     order_controller.get_sale_items,
@@ -35,4 +47,8 @@ module.exports = (app, order_controller) => {
         order_sale: JSON.stringify(order_sale)
       })
     })
+
+
+
+
 }

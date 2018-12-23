@@ -10,6 +10,7 @@ class OrderController {
     this.get_sale_product = this.get_sale_product.bind(this)
     this.get_quantity = this.get_quantity.bind(this)
     this.get_date = this.get_date.bind(this)
+    this.search = this.search.bind(this)
   }
 
   retrieve_all(req, res, next) {
@@ -116,6 +117,20 @@ class OrderController {
       })
     }, err => {
       return next(err)
+    })
+  }
+
+  search(req, res, next) {
+    let { offset = 0, limit = 20, receipt_id = '' } = req.query
+    let condition = Object.assign({}, { receipt_id })
+    let select = ['receipt_id', 'paid', 'paid_time', 'customer_id']
+    this.order_service.search(condition, select, offset, limit, (err, orders) => {
+      if (err) return next(err)
+      else {
+        res.orders = orders
+        res.offset = offset
+        return next()
+      }
     })
   }
 }

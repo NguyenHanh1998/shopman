@@ -20,6 +20,8 @@ module.exports = function (sequelize, DataTypes) {
           allowNull: false
         }
     }, {
-      underscored: true
+      underscored: true,
+      timestamps: false,
+      freezeTableName: true,
     })
 }

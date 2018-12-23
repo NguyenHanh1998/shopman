@@ -1,0 +1,60 @@
+body{
+	font-family: 'Roboto', sans-serif;
+	font-size: 12px;
+}
+
+.card p.description{
+	color: rgb(80, 101, 104);
+	font-family: 'Aleo', serif;
+	font-size: 16px	;
+}
+
+.card h3.card-title{
+	color: white;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.overview{
+	height: 200px;
+	background-image: linear-gradient(to right, #4ce2f3 , #9ae5ed , #d7f4f8 );
+	color:white;
+}
+
+.overview .card-content{
+	border-top: 1px solid #fff;
+}
+
+nav.horizon-navbar{
+	background-color: white;
+	margin-bottom: 10px;
+}
+
+.pie-chart{
+	background-color: violet;
+	/*margin:10px 0;*/
+	height: 500px;
+	width: 100%;
+
+}
+
+.pie-chart .card-header{
+	height: 75px;
+}
+.pie-chart #chartdiv-pie{
+	height: 400px;
+}
+
+.linear-chart{
+	background-color: lightblue;
+	width: 100%;
+	height: 500px;
+}
+.linear-chart .card-header{
+	height: 75px;
+}
+
+.linear-chart #chartdiv-linear{
+	height: 400px;
+}

@@ -6,6 +6,7 @@ class ProductController {
     this.search = this.search.bind(this)
     this.retrieve_one = this.retrieve_one.bind(this)
     this.update = this.update.bind(this)
+    this.delete = this.delete.bind(this)
   }
   retrieve_all(req, res, next) {
     let { offset = 0, limit = 20 } = req.query
@@ -73,6 +74,16 @@ class ProductController {
         res.updated = updated
         return next()
       }
+    })
+  }
+
+  delete(req, res, next) {
+    let product_id = req.body.product_id
+    let condition = Object.assign({}, { product_id })
+    this.product_service.delete(condition, (err, body) => {
+      if (err) next(err)
+      res.body = body
+      return next()
     })
   }
 }

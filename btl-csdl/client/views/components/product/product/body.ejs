@@ -12,7 +12,7 @@
             <button class="btn btn-primary btn-fill" data-product-id="<%= product.product_id%>" name="p-btn-update">Update</button>
           </div>
           <div class="col-md-6">
-            <button class="btn btn-fill btn-danger" name="p-btn-delete">Delete</button>
+            <button class="btn btn-fill btn-danger" data-product-id="<%= product.product_id%>" name="p-btn-delete">Delete</button>
           </div>
         </div>
       </div>
@@ -128,6 +128,41 @@
         error: err => {
           alert('Update failed, please try again!')
           window.location.reload()
+        }
+      })
+    }
+  })
+
+  $('button[name=p-btn-delete]').click(function () {
+    if (confirm("Do you want to delete this product from store?")) {
+      $('button[name=p-btn-delete]').attr('disable')
+      $('button[name=p-btn-update]').attr('disable')
+
+      let product_id = $(this).data('product-id')
+      $.ajax({
+        url: '/product',
+        type: 'DELETE',
+        data: { product_id },
+        success: res => {
+          swal(
+            'Success',
+            'Delete success',
+            'success'
+          ).then(
+            ok => window.location.href = `/products`,
+            dismiss => window.location.href = `/products`
+          )
+        },
+        error: err => {
+          swal(
+            'Delete fail',
+            'error'
+          ).then(
+            ok => {
+              $('button[name=p-btn-delete]').removeAttr('disable')
+              $('button[name=p-btn-update]').removeAttr('disable')
+            }
+          )
         }
       })
     }

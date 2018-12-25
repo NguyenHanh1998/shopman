@@ -58,4 +58,17 @@ module.exports = class {
       return null
     })
   }
+
+  delete(condition, callback) {
+    this.Product.destroy({
+      where: condition
+    }).then(res => {
+      callback(null, res > 0)
+      return null
+    }).catch(err => {
+      let error = err.message
+      callback(error)
+      return null
+    })
+  }
 }

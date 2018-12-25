@@ -39,4 +39,11 @@ module.exports = (app, product_controller) => {
     (req, res) => {
       return res.status(200).send({ updated: res.updated })
     })
+
+  app.delete('/product',
+    product_controller.delete,
+    (req, res) => {
+      return res.status(200).send({ body: res.body })
+    }
+  )
 }

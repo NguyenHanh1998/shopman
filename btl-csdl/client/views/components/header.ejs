@@ -1,19 +1,23 @@
 <nav class="navbar navbar-default horizon-navbar">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <ol class="breadcrumb navbar-brand" style="background-color: transparent !important;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <ol class="breadcrumb navbar-brand" style="background-color: transparent !important;">
 
-        </ol>
-      </div>
-    
-      <div class="text-right userbar">
-        <span class="user-noti">
-          <i class="ti-bell"></i>
-        </span>
-        <span class="user-id"> Hello <i>"USER-NAME"</i> </span>
-        <!--can u change this line into username : -->
-        <button type="button" class="btn btn-primary btn-fill mt-2 mr-3" id="log-out">Log out</button>
-      </div>
+      </ol>
     </div>
-  </nav>
-  
+
+    <div class="text-right userbar">
+      <span class="user-noti">
+        <i class="ti-bell"></i>
+      </span>
+      <span class="user-id"> Hello <i>"hanhnt"</i> </span>
+      <!--can u change this line into username : -->
+      <button type="button" class="btn btn-primary btn-fill mt-2 mr-3" id="log-out">Log out</button>
+    </div>
+  </div>
+</nav>
+<script>
+  $('#log-out').click(function () {
+    window.location.href = '/login'
+  })
+</script>

@@ -7,7 +7,7 @@
       <div class="row">
         <div class="input-group">
           <div class="input-group-btn">
-            <div class="col-md-10">
+            <div class="col-md-8">
               <div class="row" id="lp-search">
                 <div class="col-md-6">
                 </div>
@@ -16,8 +16,9 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
               <button class="btn btn-primary" name="lp-button-search">Search</button>
+              <button class="btn btn-fill btn-primary" name="lp-button-add">Add</button>
             </div>
           </div>
         </div>
@@ -119,4 +120,73 @@
     url = `/products${query != '' ? `/search?${query}` : ''}`
     window.location.href = url
   })
+
+  $('button[name=lp-button-add]').click(function () {
+    let product = {}
+    let product_id = "SP063"
+    swal({
+      title: 'New Product',
+      html:
+        '<input type="text" name="lp-add-name" class="form-control" placeholder="Name">' + '<br>' +
+        '<input type="text" name="lp-add-category" class="form-control" placeholder="Category">' + '<br>' +
+        '<input type="number" name="lp-add-price" class="form-control" placeholder="Price" min="0" step="0.01">' + '<br>' +
+        '<input type="number" name="lp-add-instock" class="form-control" placeholder="Instock" min="1" step="1">',
+      showCancelButton: true,
+      confirmButtonText: 'Create now',
+      focusConfirm: true,
+      showLoaderOnConfirm: true,
+    }).then(res => {
+      let [name, category, price_per_unit, instock] = [
+        $('input[name=lp-add-name]').val(),
+        $('input[name=lp-add-category]').val(),
+        Number($('input[name=lp-add-price]').val()),
+        Number($('input[name=lp-add-instock]').val()),
+      ]
+      if (!name) {
+        swal(
+          'Creating failed!',
+          'Name field is required, please try again!',
+          'error'
+        )
+      }
+      if (!category) {
+        swal(
+          'Creating failed!',
+          'Category field is required, please try again!',
+          'error'
+        )
+      }
+      if (!price_per_unit) {
+        swal(
+          'Creating failed!',
+          'Price field is required, please try again!',
+          'error'
+        )
+      }
+      product = Object.assign({}, { product_id, name, category, price_per_unit, instock })
+      $.ajax({
+        url: `/ajax/products`,
+        type: 'POST',
+        data: product,
+        success: res => {
+          swal(
+            'Success!',
+            'A new product is success fully created.',
+            'success'
+          ).then(
+            ok => window.location.reload(),
+            dismiss => window.location.reload()
+          )
+        },
+        error: err => {
+          swal(
+            'Creating failed!',
+            'A small problem occured, please try again!',
+            'error'
+          )
+        }
+      })
+    })
+  })
+
 </script>

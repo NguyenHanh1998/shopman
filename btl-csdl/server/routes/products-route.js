@@ -46,4 +46,10 @@ module.exports = (app, product_controller) => {
       return res.status(200).send({ body: res.body })
     }
   )
+
+  app.post('/ajax/products',
+    product_controller.create,
+    (req, res) => {
+      return res.status(200).send(res.product)
+    })
 }

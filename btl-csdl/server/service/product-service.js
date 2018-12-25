@@ -6,6 +6,7 @@ class ProductService {
     this.retrieve_one = this.retrieve_one.bind(this)
     this.update = this.update.bind(this)
     this.delete = this.delete.bind(this)
+    this.create = this.create.bind(this)
   }
 
   retrieve_all(condition, select, offset, limit, callback) {
@@ -55,6 +56,13 @@ class ProductService {
     this.product_repository.delete(condition, (err, body) => {
       if (err) return callback(err)
       return callback(null, body)
+    })
+  }
+
+  create(product, callback) {
+    this.product_repository.create(product, (err, product) => {
+      if (err) return callback(err)
+      return callback(null, product)
     })
   }
 

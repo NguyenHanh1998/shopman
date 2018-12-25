@@ -3,17 +3,24 @@ body{
 	font-size: 12px;
 }
 
+.card{
+	box-shadow:2px 2px 0 rgba(204,197,185,.75), 4px 4px 2px rgba(204,197,185,.4);
+}
+
 .card p.description{
 	color: rgb(80, 101, 104);
 	font-family: 'Aleo', serif;
 	font-size: 16px	;
+	font-style: italic;
+	display: inline-block;
 }
 
 .card h3.card-title{
 	color: white;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 24px;
-	font-weight: 600;
+	font-weight: 600;infinite
+	/*display: inline-block;*/
 }
 
 .overview{
@@ -22,8 +29,27 @@ body{
 	color:white;
 }
 
+.card-header span{
+	float: right;	
+	font-size: 40px;
+	font-weight: 600;
+	transform: translate(0,-60%);
+
+	/*color:black;*/
+}
+
 .overview .card-content{
+	padding-top: 20px;
 	border-top: 1px solid #fff;
+	color: rgb(80, 101, 104);
+	font-family: 'Aleo', serif;
+	font-size: 14px;
+}
+
+.overview ol{
+	/*list-style-type: none;*/
+	margin-left: 10px;
+	padding-left: 10px;
 }
 
 nav.horizon-navbar{

@@ -5,6 +5,8 @@ class OrderService {
     this.get_customer_info = this.get_customer_info.bind(this)
     this.get_sale_items = this.get_sale_items.bind(this)
     this.search = this.search.bind(this)
+    this.month_best_sold = this.month_best_sold.bind(this)
+    this.find_category = this.find_category.bind(this)
   }
 
   retrieve_all(condition, select, offset, limit, callback) {
@@ -46,6 +48,20 @@ class OrderService {
     this.order_repository.find_all(condition, select, offset, limit, (err, orders) => {
       if (err) return callback(err)
       return callback(null, orders)
+    })
+  }
+
+  month_best_sold(f_month, callback) {
+    this.order_repository.find_best_month(f_month, (err, res_month) => {
+      if (err) return callback(err)
+      return callback(null, res_month)
+    })
+  }
+
+  find_category(name_cate, callback) {
+    this.order_repository.find_category(name_cate, (err, sum_cate) => {
+      if (err) return callback(err)
+      return callback(null, sum_cate)
     })
   }
 }

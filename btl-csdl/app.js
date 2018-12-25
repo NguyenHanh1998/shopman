@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //DataContext
 const admin_mysql_data_context = require('./server/repositories/admin-mysql-context')(config.mysql)
-const  product_mysql_data_context = require('./server/repositories/product-mysql-context')(config.mysql)
+const product_mysql_data_context = require('./server/repositories/product-mysql-context')(config.mysql)
 const order_mysql_data_context = require('./server/repositories/order-mysql-context')(config.mysql)
 //Repositories
 const AdminRespository = require('./server/repositories/admin-repositories')
@@ -48,28 +48,31 @@ const order_service = new OrderService(order_repository)
 const AuthenController = require('./server/controller/authen-controller')
 const ProductController = require('./server/controller/product-controller')
 const OrderController = require('./server/controller/order-controller')
+const MainController = require('./server/controller/main-controller')
 
 const authen_controller = new AuthenController(authen_service)
 const product_controller = new ProductController(product_service)
 const order_controller = new OrderController(order_service)
+const main_controller = new MainController(order_service)
+
 //Routes
 require('./server/routes/home')(app)
 require('./server/routes/authen-route')(app, authen_controller)
 require('./server/routes/products-route')(app, product_controller)
-require('./server/routes/order-route')(app,order_controller)
-require('./server/routes/main-route')(app)
+require('./server/routes/order-route')(app, order_controller)
+require('./server/routes/main-route')(app, main_controller)
 
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   const err = new Error('Not Found')
   err.status = 404
   next(err)
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

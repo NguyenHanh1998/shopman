@@ -1,6 +1,6 @@
 module.exports = (app) => {
     app.get('/',
     (req, res, next) => {
-        return res.redirect('/main')
+        return res.redirect('/login')
     })
 }

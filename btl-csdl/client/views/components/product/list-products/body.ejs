@@ -1,192 +1,85 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3">
-      <h3>Products</h3>
-    </div>
-    <div class="col-md-9">
-      <div class="row">
+  <div class="card prolist">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="card-title">Products lists</h1>
+      </div>
+      <div class="col-md-6"></div>
+      <div class="col-md-12">
         <div class="input-group">
           <div class="input-group-btn">
-            <div class="col-md-8">
-              <div class="row" id="lp-search">
-                <div class="col-md-6">
-                </div>
-                <div class="col-md-6">
-                  <input class="form-control" name="lp-input-search" placeholder="Search title of product">
-                </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-6">
+                <input class="form-control" name="lp-input-search" placeholder="Search title of product">
               </div>
-            </div>
-            <div class="col-md-4">
-              <button class="btn btn-primary" name="lp-button-search">Search</button>
-              <button class="btn btn-fill btn-primary" name="lp-button-add">Add</button>
+              <div class="col-md-4">
+                <button class="btn btn-primary" name="lp-button-search">Search</button>
+                <button class="btn btn-fill btn-primary" name="lp-button-add">Add</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <table id="list-products" class="table table-condensed table-hover">
-    <thead>
-      <tr>
-        <th width="7%" scope="col">ID</th>
-        <th width="40%" scope="col">Title</th>
-        <th width="10%" scope="col">Price</th>
-        <th width="18%" scope="col">Instock</th>
-        <th width="20%" scope="col">Category</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% products.forEach(({product_id, name, category, price_per_unit, instock}) => { %>
-      <tr>
-        <!-- <td style="vertical-align:middle">
-                    <img class="img-responsive img-thumbnail mx-auto d-block center-block" width="50px" />
-                </td> -->
-        <td style="vertical-align:middle">
-          <a href="/products/<%= product_id%>">
-            <%= product_id %></a>
-        </td>
-        <td style="vertical-align:middle">
-          <a href="/products/<%= product_id%>">
-            <%= name %>
-          </a>
-        </td>
-        <td style="vertical-align:middle">
-          &dollar;
-          <%= price_per_unit %>
-        </td>
-        <td style="vertical-align:middle">
-          <%= instock %>
-        </td>
-        <td style="vertical-align:middle">
-          <%= category %>
-        </td>
-      </tr>
-      <% }) %>
-    </tbody>
-  </table>
-
-  <div class="text-center" style="margin-bottom: 20px;">
-    <div id="lp-div-change-page" current-offset="<%=current_offset%>" has-more="<%=has_more%>" class="btn-group btn-group-lg"
-      role="group" aria-label="Basic example">
-      <%if(current_offset == 0) { %>
-      <button id="lp-button-previous-offset" type="button" class="btn btn-default disabled">◀</button>
-      <% } else { %>
-      <button id="lp-button-previous-offset" type="button" class="btn btn-default">◀</button>
-      <% } %>
-      <% if (has_more) { %>
-      <button id="lp-button-next-offset" type="button" class="btn btn-default">▶</button>
-      <% } else { %>
-      <button id="lp-button-next-offset" type="button" class="btn btn-default disabled">▶</button>
-      <% } %>
+    <div class="table-holder" style="overflow: auto;">
+      <table id="list-products" class="table table-condensed ">
+        <thead>
+          <tr>
+            <th width="7%" scope="col">ID</th>
+            <th width="40%" scope="col">Title</th>
+            <th width="10%" scope="col">Price</th>
+            <th width="18%" scope="col">Instock</th>
+            <th width="20%" scope="col">Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Peter</td>
+            <td>Griffin</td>
+            <td>sdfa</td>
+            <td>Grizvxcffin</td>
+            <td>blablabla</td>
+          </tr>
+          <tr>
+            <td>Peter</td>
+            <td>Griffin</td>
+            <td>sdfa</td>
+            <td>Grizvxcffin</td>
+            <td>blablabla</td>
+          </tr>
+          <tr>
+            <td>Peter</td>
+            <td>Griffin</td>
+            <td>sdfa</td>
+            <td>Grizvxcffin</td>
+            <td>blablabla</td>
+          </tr>
+          <tr>
+            <td>Peter</td>
+            <td>Griffin</td>
+            <td>sdfa</td>
+            <td>Grizvxcffin</td>
+            <td>blablabla</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center" style="margin-bottom: 20px;">
+      <div id="lp-div-change-page" current-offset="<%=current_offset%>" has-more="<%=has_more%>" class="btn-group btn-group-lg"
+        role="group" aria-label="Basic example">
+        <%if(current_offset == 0) { %>
+        <button id="lp-button-previous-offset" type="button" class="btn btn-default disabled">◀</button>
+        <% } else { %>
+        <button id="lp-button-previous-offset" type="button" class="btn btn-default">◀</button>
+        <% } %>
+        <% if (has_more) { %>
+        <button id="lp-button-next-offset" type="button" class="btn btn-default">▶</button>
+        <% } else { %>
+        <button id="lp-button-next-offset" type="button" class="btn btn-default disabled">▶</button>
+        <% } %>
+      </div>
     </div>
   </div>
 </div>
-<script>
-  $('#lp-button-next-offset').click(function () {
-    let has_more = $('#lp-div-change-page').attr('has-more')
-    if (has_more == 'false') {
-      alert('No more products')
-    }
-    else {
-      let current_offset = Number($('#lp-div-change-page').attr('current-offset'))
-      let url = `/products?offset=${current_offset + 1}`
-      window.location.href = url
-    }
-  })
 
-  $('#lp-button-previous-offset').click(function () {
-    let current_offset = Number($('#lp-div-change-page').attr('current-offset'))
-    if (current_offset == 0) {
-      alert('No more products')
-    }
-    else {
-      let url = `/products${current_offset - 1 == 0 ? '' : `?offset=${current_offset - 1}`}`
-      window.location.href = url
-    }
-  })
-
-  $('button[name=lp-button-search]').click(function () {
-    let name = $('input[name=lp-input-search]').val()
-    let condition = Object.assign({}, { name })
-    let query = []
-    Object.keys(condition).map(key => {
-      if (condition[key] != '') {
-        query.push(`${key}=${condition[key]}`)
-      }
-    })
-    query = query.join('&')
-    if (query.length == 0) query = ''
-    url = `/products${query != '' ? `/search?${query}` : ''}`
-    window.location.href = url
-  })
-
-  $('button[name=lp-button-add]').click(function () {
-    let product = {}
-    let product_id = "SP063"
-    swal({
-      title: 'New Product',
-      html:
-        '<input type="text" name="lp-add-name" class="form-control" placeholder="Name">' + '<br>' +
-        '<input type="text" name="lp-add-category" class="form-control" placeholder="Category">' + '<br>' +
-        '<input type="number" name="lp-add-price" class="form-control" placeholder="Price" min="0" step="0.01">' + '<br>' +
-        '<input type="number" name="lp-add-instock" class="form-control" placeholder="Instock" min="1" step="1">',
-      showCancelButton: true,
-      confirmButtonText: 'Create now',
-      focusConfirm: true,
-      showLoaderOnConfirm: true,
-    }).then(res => {
-      let [name, category, price_per_unit, instock] = [
-        $('input[name=lp-add-name]').val(),
-        $('input[name=lp-add-category]').val(),
-        Number($('input[name=lp-add-price]').val()),
-        Number($('input[name=lp-add-instock]').val()),
-      ]
-      if (!name) {
-        swal(
-          'Creating failed!',
-          'Name field is required, please try again!',
-          'error'
-        )
-      }
-      if (!category) {
-        swal(
-          'Creating failed!',
-          'Category field is required, please try again!',
-          'error'
-        )
-      }
-      if (!price_per_unit) {
-        swal(
-          'Creating failed!',
-          'Price field is required, please try again!',
-          'error'
-        )
-      }
-      product = Object.assign({}, { product_id, name, category, price_per_unit, instock })
-      $.ajax({
-        url: `/ajax/products`,
-        type: 'POST',
-        data: product,
-        success: res => {
-          swal(
-            'Success!',
-            'A new product is success fully created.',
-            'success'
-          ).then(
-            ok => window.location.reload(),
-            dismiss => window.location.reload()
-          )
-        },
-        error: err => {
-          swal(
-            'Creating failed!',
-            'A small problem occured, please try again!',
-            'error'
-          )
-        }
-      })
-    })
-  })
-
-</script>

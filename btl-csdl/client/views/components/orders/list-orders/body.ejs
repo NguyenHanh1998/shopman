@@ -1,12 +1,16 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-5"></div>
-    <div class="col-md-7 row" id="lo-search">
-      <div class="col-md-8">
-        <input name="lo-input-search" placeholder="Search order id" class="form-control">
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-primary" name="lo-button-search">Search</button>
+  <div class="card">
+    <div class="card-content">
+      <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-7 row" id="lo-search">
+          <div class="col-md-8">
+            <input name="lo-input-search" placeholder="Search order id" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-primary" name="lo-button-search">Search</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -99,7 +103,7 @@
     let url = `/orders/${receipt_id}?${query}`
     window.location.href = url
   })
-  $('button[name=lo-button-search]').click(function() {
+  $('button[name=lo-button-search]').click(function () {
     let receipt_id = $('input[name=lo-input-search]').val()
     let condition = Object.assign({}, { receipt_id })
     let query = []

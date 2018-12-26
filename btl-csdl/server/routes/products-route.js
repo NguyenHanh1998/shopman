@@ -30,7 +30,7 @@ module.exports = (app, product_controller) => {
     (req, res, next) => {
       let { product } = res
       return res.render('product/product', {
-        title: 'Product | Admin',
+        title: 'Products | Admin',
         product: product
       })
     })

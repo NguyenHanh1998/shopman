@@ -1,7 +1,7 @@
 module.exports = (app, product_controller) => {
   app.get('/products',
-    // product_controller.retrieve_all,  
-    // product_controller.check_if_has_more,
+    product_controller.retrieve_all,  
+    product_controller.check_if_has_more,
     (req, res, next) => {
       let { has_more, products } = res
       return res.render('product/list-products', {

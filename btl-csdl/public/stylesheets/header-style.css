@@ -21,9 +21,6 @@
 .sidebar{
 	margin-right: 15px;
 }
-.sidebar[data-background-color="brown"]::after, .sidebar[data-background-color="brown"]::before{
-	background-color: #83CFFF;
-}
 
 .horizon-navbar{
 	background-color: white;

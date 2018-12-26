@@ -1,29 +1,29 @@
 <div class="container-fluid">
-  <div class="card">
-    <div class="card-content">
-      <div class="row">
-        <div class="col-md-5"></div>
-        <div class="col-md-7 row" id="lo-search">
-          <div class="col-md-8">
-            <input name="lo-input-search" placeholder="Search order id" class="form-control">
-          </div>
-          <div class="col-md-4">
-            <button class="btn btn-primary" name="lo-button-search">Search</button>
+  <div class="card-bg">
+      <div class="card mt-3">
+        <div class="card-content">
+          <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-7 row" id="lo-search">
+              <div class="col-md-8">
+                <input name="lo-input-search" placeholder="Search order id" class="form-control">
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-primary" name="lo-button-search">Search</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- table -->
-  <div class="thumbnail mt-3">
-    <div>
-      <table id="tb-list-orders" class="table table-condensed table-hover">
+    <!-- table -->
+    <div class="table-holder" style="overflow: auto;">
+      <table id="tb-list-orders" class="table table-condensed">
         <thead>
           <tr>
-            <th width="30%" scope="col"><strong>Order ID</strong></th>
-            <th width="40%" scope="col"><strong>Date</strong></th>
-            <th width="30%" scope="col"><strong>Sub total</strong></th>
+            <th width="30%" scope="col">Order ID</th>
+            <th width="40%" scope="col">Date</th>
+            <th width="30%" scope="col">Sub total</th>
           </tr>
         </thead>
         <tbody>
@@ -44,22 +44,22 @@
         </tbody>
       </table>
     </div>
-  </div>
 
 
-  <div class="text-center" style="margin-bottom: 20px;">
-    <div id="lp-div-change-page" current-offset="<%=current_offset%>" has-more="<%=has_more%>" class="btn-group btn-group-lg"
-      role="group" aria-label="Basic example">
-      <%if(current_offset == 0) { %>
-      <button id="lp-button-previous-offset" type="button" class="btn btn-default disabled">◀</button>
-      <% } else { %>
-      <button id="lp-button-previous-offset" type="button" class="btn btn-default">◀</button>
-      <% } %>
-      <% if (has_more) { %>
-      <button id="lp-button-next-offset" type="button" class="btn btn-default">▶</button>
-      <% } else { %>
-      <button id="lp-button-next-offset" type="button" class="btn btn-default disabled">▶</button>
-      <% } %>
+    <div class="text-center" style="margin-bottom: 20px;">
+      <div id="lp-div-change-page" current-offset="<%=current_offset%>" has-more="<%=has_more%>" class="btn-group btn-group-lg"
+        role="group" aria-label="Basic example">
+        <%if(current_offset == 0) { %>
+        <button id="lp-button-previous-offset" type="button" class="btn btn-default disabled">◀</button>
+        <% } else { %>
+        <button id="lp-button-previous-offset" type="button" class="btn btn-default">◀</button>
+        <% } %>
+        <% if (has_more) { %>
+        <button id="lp-button-next-offset" type="button" class="btn btn-default">▶</button>
+        <% } else { %>
+        <button id="lp-button-next-offset" type="button" class="btn btn-default disabled">▶</button>
+        <% } %>
+      </div>
     </div>
   </div>
 </div>
